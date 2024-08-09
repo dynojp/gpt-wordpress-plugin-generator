@@ -80,6 +80,8 @@ def main(name: str, prompt: str, model: str):
     assert plugin
     pprint_plugin(plugin)
 
+    click.confirm("Proceed to generate files?", default=None, abort=True)
+
     parent = DIR_OUT
     if not parent.is_dir():
         parent.mkdir(parents=True)
@@ -89,9 +91,9 @@ def main(name: str, prompt: str, model: str):
 
 
 def pprint_plugin(plugin: PluginResponse):
-    print(plugin.name)
-    print(plugin.description)
-    print("\n".join(x.path for x in plugin.files))
+    print(f"Name: {plugin.name}")
+    print(f"Descpription: {plugin.description}")
+    print(f"Files to generate:\n", "\n".join(x.path for x in plugin.files))
 
 
 def make_plugin_files(parent: Path, plugin: PluginResponse):
