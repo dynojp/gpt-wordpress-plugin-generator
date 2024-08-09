@@ -77,6 +77,7 @@ def main(name: str, prompt: str, model: str):
         sys.exit(str(completion))
 
     plugin = message.parsed
+    assert plugin
     pprint_plugin(plugin)
 
     parent = DIR_OUT
